@@ -21,7 +21,7 @@ const Word = () => {
   const navigate = useNavigate();
 
   const { data, error } = useFetch(
-    "https://api.dictionaryapi.dev/api/v2/entries/en/" + word
+    word ? "https://api.dictionaryapi.dev/api/v2/entries/en/" + word : null
   );
 
   const searchedWord = data ? data[0] : null;
