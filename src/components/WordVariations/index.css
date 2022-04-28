@@ -1,9 +1,13 @@
 .word-variations {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
 .word-variations .synonyms,
 .word-variations .antonyms {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
   flex: 1;
   font-size: 1.6rem;
 }
