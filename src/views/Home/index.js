@@ -1,10 +1,17 @@
 import "./index.css";
 import { useEffect, useState } from "react";
-import { useWordContext } from "../../context/WordState";
 import { useNavigate } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
-import useFetch from "../../hook/UseFetch";
+
+// components
 import RandomWord from "../../components/RandomWord";
+import Suggestion from "../../components/Suggestions";
+
+// context
+import { useWordContext } from "../../context/WordState";
+
+// custom hook
+import useFetch from "../../hook/UseFetch";
 
 const Home = () => {
   const { setWord } = useWordContext();
@@ -12,7 +19,7 @@ const Home = () => {
   const [suggestion, setSuggestion] = useState([]);
   const navigate = useNavigate();
 
-  const { data, isPendding, error } = useFetch(
+  const { data } = useFetch(
     input == "" ? null : "https://api.datamuse.com/sug?s=" + input
   );
 
@@ -56,17 +63,10 @@ const Home = () => {
           onClick={() => handleSearch(input)}
         />
       </div>
-      <ul className="suggestion-list">
-        {suggestion &&
-          suggestion.map((value, i) => {
-            const { word } = value;
-            return (
-              <li key={i} onClick={() => handleSuggestionClick(word)}>
-                {word}
-              </li>
-            );
-          })}
-      </ul>
+      <Suggestion
+        suggestion={suggestion}
+        handleSuggestionClick={handleSuggestionClick}
+      />
       {input ? null : <RandomWord handleSearch={handleSearch} />}
     </div>
   );

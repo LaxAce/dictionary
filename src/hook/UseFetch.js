@@ -27,7 +27,3 @@ const UseFetch = (url) => {
 };
 
 export default UseFetch;
-
-// •	https://api.datamuse.com/sug?s=<word>
-// •	https://api.dictionaryapi.dev/api/v2/entries/en/<word>
-// •	https://random-words-api.vercel.app/word

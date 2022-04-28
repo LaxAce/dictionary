@@ -1,18 +1,26 @@
 import "./index.css";
 import { useNavigate } from "react-router-dom";
-import { useWordContext } from "../../context/WordState";
 import { IoIosArrowBack } from "react-icons/io";
-import { GiSpeaker } from "react-icons/gi";
+import { useState } from "react";
+
+// components
+import Phonetics from "../../components/Phonetics";
+import PartOfSpeech from "../../components/PartOfSpeech";
+import Definitions from "../../components/Definitions";
+import WordVariations from "../../components/WordVariations";
+
+// context
+import { useWordContext } from "../../context/WordState";
+
+// custom hook
 import useFetch from "../../hook/UseFetch";
-import { useEffect, useState } from "react";
 
 const Word = () => {
-  const { word } = useWordContext();
-  const navigate = useNavigate();
-  const [pos, setPos] = useState([]);
+  const { word, setWord } = useWordContext();
   const [posIndex, setPosIndex] = useState(0);
+  const navigate = useNavigate();
 
-  const { data, isPendding, error } = useFetch(
+  const { data, error } = useFetch(
     "https://api.dictionaryapi.dev/api/v2/entries/en/" + word
   );
 
@@ -21,19 +29,20 @@ const Word = () => {
   const phonetics = searchedWord?.phonetics;
   const meanings = searchedWord?.meanings;
 
-  console.log(searchedWord);
-
   const handleGoBack = () => {
     navigate("/");
   };
 
   const handlePartOfSpeech = (i) => {
     setPosIndex(i);
-    setPos();
+  };
+
+  const handleSearch = (input) => {
+    setWord(input);
+    setPosIndex(0);
   };
 
   const activePOS = meanings?.find((value, i) => posIndex == i);
-  console.log(activePOS);
 
   return (
     <div className="word">
@@ -43,74 +52,17 @@ const Word = () => {
       {data && (
         <div className="word-container">
           <h1>{displayWord}</h1>
-          <ul className="phonetics-list">
-            {phonetics
-              ? phonetics.map((value, i) => {
-                  if (value.text) {
-                    return (
-                      <li key={i} className="phonetics">
-                        {value.text}-
-                      </li>
-                    );
-                  }
-                  if (value.audio) {
-                    return (
-                      <li key={i} className="phonetics speaker">
-                        <GiSpeaker size={20} />
-                        {/* {value.audio} */}
-                      </li>
-                    );
-                  }
-                })
-              : null}
-          </ul>
-          <ul className="part-of-speech-list">
-            {meanings
-              ? meanings.map((value, i) => {
-                  return (
-                    <li
-                      key={i}
-                      className={
-                        posIndex == i
-                          ? "part-of-speech active"
-                          : "part-of-speech"
-                      }
-                      onClick={() => handlePartOfSpeech(i)}
-                    >
-                      {value.partOfSpeech}
-                    </li>
-                  );
-                })
-              : null}
-          </ul>
-
-          <div className="definition-container">
-            <h3 className="definition-heading">Definition</h3>
-            <ol className="definition">
-              {activePOS?.definitions?.map((value, i) => (
-                <li key={i}>{value.definition}</li>
-              ))}
-            </ol>
-          </div>
-
-          <div className="word-variations">
-            <ul className="synonyms">
-              <h3>Synonyms</h3>
-              {activePOS?.synonyms?.map((value, i) => (
-                <li key={i}>{value}</li>
-              ))}
-              {activePOS?.synonyms.length == 0 ? "none" : null}
-            </ul>
-            <ul className="antonyms">
-              <h3>Antonyms</h3>
-              {activePOS?.antonyms?.map((value, i) => (
-                <li key={i}>{value}</li>
-              ))}
-              {activePOS?.antonyms.length == 0 ? "none" : null}
-            </ul>
-          </div>
+          <Phonetics phonetics={phonetics} />
+          <PartOfSpeech
+            meanings={meanings}
+            posIndex={posIndex}
+            handlePartOfSpeech={handlePartOfSpeech}
+          />
+          <Definitions activePOS={activePOS} />
+          <WordVariations activePOS={activePOS} handleSearch={handleSearch} />
         </div>
       )}
+      {error ? <p className="error">No match found.</p> : null}
     </div>
   );
 };

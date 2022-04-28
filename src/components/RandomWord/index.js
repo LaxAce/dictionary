@@ -1,5 +1,7 @@
 import "./index.css";
 import { useState } from "react";
+
+// custom hook
 import useFetch from "../../hook/UseFetch";
 
 const RandomWord = ({ handleSearch }) => {
@@ -9,24 +11,25 @@ const RandomWord = ({ handleSearch }) => {
 
   const randomWord = data && data[0];
 
+  const word = randomWord?.word;
+  const pronunciation = randomWord?.pronunciation;
+  const definition = randomWord?.definition;
+
   setTimeout(() => {
     setLoading(false);
   }, 2600);
 
   return (
     <div className="random-word">
-      {!loading && data && (
-        <div
-          className="container"
-          onClick={() => handleSearch(randomWord.word)}
-        >
+      {!loading && data && randomWord && (
+        <div className="container" onClick={() => handleSearch(word)}>
           <h1>Random Word!</h1>
-          <h2>{randomWord.word}</h2>
+          <h2>{word}</h2>
           <h3>
-            <span>Pronunciation:</span> {randomWord.pronunciation}
+            <span>Pronunciation:</span> {pronunciation}
           </h3>
           <p>
-            <span>Definition:</span> {randomWord.definition}
+            <span>Definition:</span> {definition}
           </p>
         </div>
       )}

@@ -1,0 +1,21 @@
+.phonetics-list {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+.phonetics-list .phonetics {
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
+.phonetics-list .speaker {
+  cursor: pointer;
+  margin-bottom: -6px;
+}
+
+.phonetics-list .speaker:active {
+  color: rgb(0, 145, 255);
+}

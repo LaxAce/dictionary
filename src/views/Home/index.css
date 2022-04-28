@@ -36,17 +36,6 @@
   cursor: pointer;
 }
 
-.suggestion-list {
-  background-color: var(--secondary-background);
-}
-
-.suggestion-list li {
-  padding: 8px 8px;
-  font-size: 2rem;
-  border-bottom: 1px solid #fff;
-  cursor: pointer;
-}
-
 @media screen and (min-width: 768px) {
   .home {
     width: 60rem;

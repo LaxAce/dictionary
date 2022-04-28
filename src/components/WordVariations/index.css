@@ -1,0 +1,16 @@
+.word-variations {
+  display: flex;
+}
+
+.word-variations .synonyms,
+.word-variations .antonyms {
+  flex: 1;
+  font-size: 1.6rem;
+}
+
+.word-variations .synonyms li,
+.word-variations .antonyms li {
+  font-size: 1.6rem;
+  color: var(--secondary-color);
+  cursor: pointer;
+}
