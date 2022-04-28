@@ -8,15 +8,16 @@
 }
 
 .home .search-container {
-  background-color: #ccc;
+  background-color: var(--secondary-background);
   padding: 0 8px;
   margin-top: 2.4rem;
   border-bottom: 1px solid #fff;
+  border-radius: 4px;
 }
 
 .home input {
   height: 4.6rem;
-  background-color: #ccc;
+  background-color: var(--secondary-background);
   padding: 0 8px;
   padding-left: 0;
   flex: 1;
@@ -36,13 +37,19 @@
 }
 
 .suggestion-list {
-  background-color: #ccc;
-  padding-left: 0;
-  list-style: none;
+  background-color: var(--secondary-background);
 }
 
 .suggestion-list li {
   padding: 8px 8px;
   font-size: 2rem;
   border-bottom: 1px solid #fff;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .home {
+    width: 60rem;
+    margin: 1rem auto;
+  }
 }

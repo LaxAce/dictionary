@@ -1,0 +1,94 @@
+.word {
+  margin: 5% 5% 30% 5%;
+}
+
+.word .go-back {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  color: var(--secondary-color);
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.word .go-back span {
+  font-size: 1.4rem;
+}
+
+.word h1 {
+  margin-top: 3.6rem;
+  margin-bottom: 1rem;
+  font-size: 3.2rem;
+}
+
+.word .phonetics-list {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+.word .phonetics {
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
+.word .speaker {
+  cursor: pointer;
+}
+
+.word .part-of-speech-list {
+  display: flex;
+  margin: 2rem 0;
+}
+
+.word .part-of-speech {
+  font-size: 1.6rem;
+  padding: 2px 10px;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  cursor: pointer;
+}
+
+.word .active {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+
+.word h3 {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  margin-bottom: 1.4rem;
+}
+
+.word .definition {
+  font-size: 1.8rem;
+  line-height: 1.5;
+  margin-bottom: 3.2rem;
+}
+
+.word .word-variations {
+  display: flex;
+}
+
+.word .synonyms,
+.word .antonyms {
+  flex: 1;
+  font-size: 1.6rem;
+}
+
+.word .synonyms li,
+.word .antonyms li {
+  font-size: 1.6rem;
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .word {
+    width: 60rem;
+    margin: 1rem auto;
+    margin-bottom: 8rem;
+  }
+}

@@ -1,5 +1,5 @@
 import "./index.css";
-import React, { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import { useWordContext } from "../../context/WordState";
 import { useNavigate } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
@@ -67,7 +67,7 @@ const Home = () => {
             );
           })}
       </ul>
-      <RandomWord />
+      {input ? null : <RandomWord handleSearch={handleSearch} />}
     </div>
   );
 };

@@ -7,11 +7,32 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: #444;
+  --secondary-color: rgb(0, 94, 255);
+  --secondary-background: #ccc;
+}
+
 html {
   font-size: 62.5%;
 }
 
 body {
   font-family: "Inter", sans-serif;
-  color: #222;
+  color: var(--primary-color);
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.loading {
+  font-size: 1.8rem;
+}
+
+.error {
+  font-size: 1.4rem;
+  color: tomato;
+  font-weight: 600;
 }

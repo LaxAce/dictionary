@@ -7,9 +7,10 @@
 
 .random-word .container {
   padding: 2rem;
-  border: 0.8px solid rgb(0, 94, 255);
+  border: 0.8px solid var(--secondary-color);
   border-radius: 4px;
   min-width: 80%;
+  cursor: pointer;
 }
 
 .random-word h1 {
