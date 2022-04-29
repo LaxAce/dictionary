@@ -29,8 +29,10 @@ const Home = () => {
   }, [data, input]);
 
   const handleSearch = (input) => {
-    setWord(input);
-    navigate("/word");
+    if (input != "") {
+      setWord(input);
+      navigate("/word");
+    }
   };
 
   const handleEnter = (e) => {

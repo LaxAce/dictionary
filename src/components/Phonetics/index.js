@@ -2,7 +2,11 @@ import "./index.css";
 import { GiSpeaker } from "react-icons/gi";
 
 const Phonetics = ({ phonetics }) => {
-  const phonetic = phonetics[1] || phonetics[0];
+  let phonetic;
+
+  if (phonetics.length > 0) {
+    phonetic = phonetics[1] || phonetics[0];
+  } else phonetic = [];
 
   const { audio, text } = phonetic;
 

@@ -27,7 +27,7 @@ const RandomWord = ({ handleSearch }) => {
     <div className="random-word">
       {!loading && data && randomWord && (
         <div className="container" onClick={() => handleSearch(word)}>
-          <h1>Random Word!</h1>
+          <h1>Word of the moment</h1>
           <h2>{word}</h2>
           <h3>
             <span>Pronunciation:</span> {pronunciation}
