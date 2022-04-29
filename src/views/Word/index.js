@@ -4,9 +4,12 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useState } from "react";
 
 // components
-import Phonetics from "../../components/Phonetics";
-import PartOfSpeech from "../../components/PartOfSpeech";
 import Definitions from "../../components/Definitions";
+import Error from "../../components/Error";
+import Example from "../../components/Examples";
+import Loading from "../../components/Loading";
+import PartOfSpeech from "../../components/PartOfSpeech";
+import Phonetics from "../../components/Phonetics";
 import WordVariations from "../../components/WordVariations";
 
 // context
@@ -20,7 +23,7 @@ const Word = () => {
   const [posIndex, setPosIndex] = useState(0);
   const navigate = useNavigate();
 
-  const { data, error } = useFetch(
+  const { data, isPending, error } = useFetch(
     word ? "https://api.dictionaryapi.dev/api/v2/entries/en/" + word : null
   );
 
@@ -59,10 +62,12 @@ const Word = () => {
             handlePartOfSpeech={handlePartOfSpeech}
           />
           <Definitions activePOS={activePOS} />
+          <Example activePOS={activePOS} />
           <WordVariations activePOS={activePOS} handleSearch={handleSearch} />
         </div>
       )}
-      {error ? <p className="error">No match found.</p> : null}
+      {isPending ? <Loading /> : null}
+      {error ? <Error message={"No match found."} /> : null}
     </div>
   );
 };

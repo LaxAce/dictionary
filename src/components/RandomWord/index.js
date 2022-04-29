@@ -1,6 +1,10 @@
 import "./index.css";
 import { useState } from "react";
 
+// component
+import Error from "../Error";
+import Loading from "../Loading";
+
 // custom hook
 import useFetch from "../../hook/UseFetch";
 
@@ -33,11 +37,9 @@ const RandomWord = ({ handleSearch }) => {
           </p>
         </div>
       )}
-      {loading ? <div className="loading">Loading...</div> : null}
+      {loading ? <Loading /> : null}
       {!loading && error ? (
-        <div className="error">
-          Something went wrong. Please refresh the page!
-        </div>
+        <Error message={"Something went wrong. Please refresh the page!"} />
       ) : null}
     </div>
   );

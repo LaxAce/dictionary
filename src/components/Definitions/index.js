@@ -3,7 +3,7 @@ import "./index.css";
 const Definitions = ({ activePOS }) => {
   return (
     <div className="definition-container">
-      <h3 className="definition-heading">Definition</h3>
+      <h3 className="definition-heading">Definitions</h3>
       <ol className="definition">
         {activePOS?.definitions?.map((value, i) => (
           <li key={i}>{value.definition}</li>
