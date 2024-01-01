@@ -11,11 +11,11 @@ import useFetch from "../../hook/UseFetch";
 const RandomWord = ({ handleSearch }) => {
   const [loading, setLoading] = useState(true);
 
-  const { data, error } = useFetch("https://random-words-api.vercel.app/word");
+  const { data, error } = useFetch("https://random-word-api.herokuapp.com/word");
 
   const randomWord = data && data[0];
 
-  const word = randomWord?.word;
+  const word = randomWord;
   const pronunciation = randomWord?.pronunciation;
   const definition = randomWord?.definition;
 
@@ -29,12 +29,13 @@ const RandomWord = ({ handleSearch }) => {
         <div className="container" onClick={() => handleSearch(word)}>
           <h1>Word of the moment</h1>
           <h2>{word}</h2>
-          <h3>
+          {pronunciation ? (<h3>
             <span>Pronunciation:</span> {pronunciation}
-          </h3>
-          <p>
+          </h3>) : null
+          }
+          {definition ? (<p>
             <span>Definition:</span> {definition}
-          </p>
+          </p>) : null}
         </div>
       )}
       {loading ? <Loading /> : null}
